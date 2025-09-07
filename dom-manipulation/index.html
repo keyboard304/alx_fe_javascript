@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dynamic Quote Generator</title>
+  <style>
+    #notification {
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 5px;
+      display: none;
+    }
+    #notification.success { background-color: #d4edda; color: #155724; }
+    #notification.info { background-color: #cce5ff; color: #004085; }
+    #notification.error { background-color: #f8d7da; color: #721c24; }
+  </style>
+</head>
+<body>
+  <h1>Dynamic Quote Generator</h1>
+
+  <!-- Notifications -->
+  <div id="notification"></div>
+
+  <!-- Category Filter -->
+  <label for="categoryFilter">Filter by Category:</label>
+  <select id="categoryFilter" onchange="filterQuote()">
+    <option value="all">All Categories</option>
+  </select>
+
+  <!-- Quote Display -->
+  <div id="quoteDisplay"></div>
+  <button id="newQuote">Show New Quote</button>
+
+  <!-- Add Quote Form -->
+  <div>
+    <input id="newQuoteText" type="text" placeholder="Enter a new quote" />
+    <input id="newQuoteCategory" type="text" placeholder="Enter quote category" />
+    <button onclick="addQuote()">Add Quote</button>
+  </div>
+
+  <!-- Export / Import -->
+  <div>
+    <button onclick="exportToJsonFile()">Export Quotes</button>
+    <input type="file" id="importFile" accept=".json" onchange="importFromJsonFile(event)" />
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
