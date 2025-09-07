@@ -276,6 +276,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Initialize the application
   populateCategories();
+  createAddQuoteForm(); // Call the required createAddQuoteForm function
   showRandomQuote();
   
   // Save quotes to localStorage on first load if they don't exist
