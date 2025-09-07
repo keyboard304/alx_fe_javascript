@@ -2,8 +2,29 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dynamic Quote Generator</title>
   <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+    
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    
     #notification {
       margin: 10px 0;
       padding: 10px;
@@ -13,35 +34,86 @@
     #notification.success { background-color: #d4edda; color: #155724; }
     #notification.info { background-color: #cce5ff; color: #004085; }
     #notification.error { background-color: #f8d7da; color: #721c24; }
+    
+    #quoteDisplay {
+      background: #f8f9fa;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 5px;
+      border-left: 4px solid #007bff;
+      font-style: italic;
+      min-height: 50px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .form-section {
+      margin: 20px 0;
+      padding: 15px;
+      background: #f8f9fa;
+      border-radius: 5px;
+    }
+    
+    input, select, button {
+      padding: 8px 12px;
+      margin: 5px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+    
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    
+    button:hover {
+      background-color: #0056b3;
+    }
+    
+    .export-import-section {
+      margin: 20px 0;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
-  <h1>Dynamic Quote Generator</h1>
+  <div class="container">
+    <h1>Dynamic Quote Generator</h1>
 
-  <!-- Notifications -->
-  <div id="notification"></div>
+    <!-- Notifications -->
+    <div id="notification"></div>
 
-  <!-- Category Filter -->
-  <label for="categoryFilter">Filter by Category:</label>
-  <select id="categoryFilter" onchange="filterQuote()">
-    <option value="all">All Categories</option>
-  </select>
+    <!-- Category Filter -->
+    <div class="form-section">
+      <label for="categoryFilter">Filter by Category:</label>
+      <select id="categoryFilter">
+        <option value="all">All Categories</option>
+      </select>
+    </div>
 
-  <!-- Quote Display -->
-  <div id="quoteDisplay"></div>
-  <button id="newQuote">Show New Quote</button>
+    <!-- Quote Display -->
+    <div id="quoteDisplay">Click "Show New Quote" to get started!</div>
+    <button id="newQuote">Show New Quote</button>
 
-  <!-- Add Quote Form -->
-  <div>
-    <input id="newQuoteText" type="text" placeholder="Enter a new quote" />
-    <input id="newQuoteCategory" type="text" placeholder="Enter quote category" />
-    <button onclick="addQuote()">Add Quote</button>
-  </div>
+    <!-- Add Quote Form -->
+    <div class="form-section">
+      <h3>Add New Quote</h3>
+      <div>
+        <input id="newQuoteText" type="text" placeholder="Enter a new quote" />
+        <input id="newQuoteCategory" type="text" placeholder="Enter quote category" />
+        <button onclick="addQuote()">Add Quote</button>
+      </div>
+    </div>
 
-  <!-- Export / Import -->
-  <div>
-    <button onclick="exportToJsonFile()">Export Quotes</button>
-    <input type="file" id="importFile" accept=".json" onchange="importFromJsonFile(event)" />
+    <!-- Export / Import -->
+    <div class="export-import-section">
+      <button onclick="exportToJsonFile()">Export Quotes</button>
+      <input type="file" id="importFile" accept=".json" />
+      <button onclick="syncQuotes()">Sync with Server</button>
+    </div>
   </div>
 
   <script src="script.js"></script>
